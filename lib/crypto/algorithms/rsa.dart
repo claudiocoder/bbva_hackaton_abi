@@ -10,10 +10,10 @@ import 'package:pointycastle/asymmetric/rsa.dart';
 
 class Rsa implements Cipher {
   String message;
-  AsymetricPublicKey public_key;
+  AsymetricPublicKey publicKey;
 
   Rsa(AsymetricPublicKey publicKey) {
-    this.public_key = public_key;
+    this.publicKey = publicKey;
   }
 
   void set_message(String message) {
@@ -21,15 +21,15 @@ class Rsa implements Cipher {
   }
 
   String get get_message {
-    return message;
+    return this.message;
   }
 
   void set_public_key(AsymetricPublicKey public_key) {
-    this.public_key = public_key;
+    this.publicKey = public_key;
   }
 
   AsymetricPublicKey get get_public_key {
-    return public_key;
+    return this.publicKey;
   }
 
   @override

@@ -27,7 +27,7 @@ class AsymetricPublicKey {
   }
 
   RSAPublicKey to_rsa_public_key() {
-    return RSAPublicKey(BigInt.parse(this.get_modulus), BigInt.parse(this.get_exponent));
+    return RSAPublicKey(BigInt.parse(this.get_modulus, radix: 16), BigInt.parse(this.get_exponent, radix: 16));
   }
 
   factory AsymetricPublicKey.fromJson(Map<String, dynamic> json) {

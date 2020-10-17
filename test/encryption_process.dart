@@ -23,6 +23,6 @@ void main() {
       pb
     );
     final message = process.doProcess();
-    print('The final message is: $message');
+    print('The final message is: ${message.encryptedCredential}');
   });
 }
