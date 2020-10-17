@@ -31,7 +31,7 @@ class _SignatureScrennState extends State<SignatureScrenn> {
               ),
               Container(
                 height: MediaQuery.of(context).size.height * .20,
-                decoration: const BoxDecoration(color: Colors.black),
+                decoration: const BoxDecoration(color: Colors.white),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   mainAxisSize: MainAxisSize.max,

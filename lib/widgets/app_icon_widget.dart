@@ -16,9 +16,9 @@ class AppIconWidget extends StatelessWidget {
     //calculating container width
     double imageSize;
     if (MediaQuery.of(context).orientation == Orientation.portrait) {
-      imageSize = (size.width * 0.20);
+      imageSize = (size.width);
     } else {
-      imageSize = (size.height * 0.20);
+      imageSize = (size.height);
     }
 
     return Image.asset(
