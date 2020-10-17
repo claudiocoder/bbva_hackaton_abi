@@ -41,9 +41,9 @@ class SendE2eData {
       final hmacSha256 = new Hmac(sha256, key); // HMAC-SHA256
       final digest = hmacSha256.convert(bytes);
 
-      final encryptedMessage = base64.encode(digest.bytes);
+      final hashedMessage = base64.encode(digest.bytes);
 
-      return EncryptedMessage('$encryptedMessage.$pawPrint');
+      return new EncryptedMessage('$encryptedBio.$hashedMessage');
     } catch (error) {
       print('Error: $error');
       throw error;
