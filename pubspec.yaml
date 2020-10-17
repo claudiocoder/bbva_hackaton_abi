@@ -40,6 +40,7 @@ dependencies:
   flutter_audio_recorder: ^0.5.5
   path_provider: ^1.6.21
   audioplayers: ^0.16.1
+  signature: ^3.2.0 
 
 dev_dependencies:
   flutter_test:

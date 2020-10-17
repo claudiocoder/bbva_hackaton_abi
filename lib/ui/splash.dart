@@ -21,7 +21,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(child: SafeArea(child: Center(child: AppIconWidget(image: Assets.appLogo),),),);
+    return Material(
+      color: Colors.white,
+      child: SafeArea(
+        child: Center(
+          child: AppIconWidget(image: Assets.appLogo),
+        ),
+      ),
+    );
   }
 
   startTimer() {
@@ -31,6 +38,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   navigate() async {
     // SharedPreferences preferences = await SharedPreferences.getInstance();
-    Navigator.of(context).pushReplacementNamed(Routes.audio);
+    Navigator.of(context).pushReplacementNamed(Routes.signature);
   }
 }

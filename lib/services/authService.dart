@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hackaton_bbva_abi/ui/login/Login.dart';
 import 'package:hackaton_bbva_abi/ui/splash.dart';
@@ -30,7 +29,7 @@ class AuthService {
   }
 
   signInWithOTP(smsCode, verId) {
-    AuthCredential authCreds = PhoneAuthProvider.getCredential(
+    AuthCredential authCreds = PhoneAuthProvider.credential(
         verificationId: verId, smsCode: smsCode);
     signIn(authCreds);
   }
