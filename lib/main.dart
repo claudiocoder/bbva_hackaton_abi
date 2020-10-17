@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: Routes.routes,
       theme: themeData,
-      home: TicketPage(), //AuthService().handleAuth(),
+      home: AuthService().handleAuth(),
     );
   }
 }

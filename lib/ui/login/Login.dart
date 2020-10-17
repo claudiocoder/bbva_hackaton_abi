@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hackaton_bbva_abi/services/authService.dart';
+import 'dart:ui';
 
 class Login extends StatefulWidget {
   @override
@@ -85,19 +86,28 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: Text('Equipo Knikfall'),
-        ),
-      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0),
+            child: Text(
+              "Bienvenido a ABI",
+              style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.w900),
+              textAlign: TextAlign.left,
+            ),
+          ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.only(top: 40.0, left: 20, right: 20.0),
             child: TextField(
+              style: TextStyle(
+                fontSize: 25.0,
+                height: 2.0,
+                color: Colors.black,
+              ),
               decoration: InputDecoration(
-                hintText: "telefono",
+                hintText: 'Ingresa tu número celular',
+                fillColor: Colors.white38
               ),
               onChanged: (value) {
                 this.phoneNo = value;
@@ -107,14 +117,24 @@ class _LoginState extends State<Login> {
           SizedBox(
             height: 10.0,
           ),
-          RaisedButton(
+          Padding(
+            padding: EdgeInsets.only(top: 30.0),
+          ),
+          MaterialButton(
+            height: 58,
+            minWidth: 340,
+            color: Color(0xFF14549C),
+            shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(12),
+            ),
             onPressed: verfiyPhone,
             child: Text(
-              "verify",
-              style: TextStyle(color: Colors.white),
+              "Registrar",
+              style: TextStyle(
+                fontSize: 24,
+                color: Colors.white,
+              ),
             ),
-            elevation: 7.0,
-            color: Colors.blue,
           )
         ],
       ),
