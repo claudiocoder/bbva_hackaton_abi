@@ -13,7 +13,7 @@ class _SignatureScrennState extends State<SignatureScrenn> {
   final SignatureController _controller = SignatureController(
     penStrokeWidth: 2.5,
     penColor: Colors.black,
-    exportBackgroundColor: Colors.blue,
+    exportBackgroundColor: Colors.white,
   );
 
   @override
@@ -25,10 +25,12 @@ class _SignatureScrennState extends State<SignatureScrenn> {
             children: <Widget>[
               Signature(
                 controller: _controller,
-                height: 300,
+                height: MediaQuery.of(context).size.height * .80,
+                width: MediaQuery.of(context).size.width,
                 backgroundColor: Colors.white,
               ),
               Container(
+                height: MediaQuery.of(context).size.height * .20,
                 decoration: const BoxDecoration(color: Colors.black),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -38,6 +40,7 @@ class _SignatureScrennState extends State<SignatureScrenn> {
                     IconButton(
                       icon: const Icon(Icons.check),
                       color: Colors.blue,
+                      iconSize: 32.0,
                       onPressed: () async {
                         if (_controller.isNotEmpty) {
                           var data = await _controller.toPngBytes();
@@ -61,6 +64,7 @@ class _SignatureScrennState extends State<SignatureScrenn> {
                     IconButton(
                       icon: const Icon(Icons.clear),
                       color: Colors.blue,
+                      iconSize: 32.0,
                       onPressed: () {
                         setState(() => _controller.clear());
                       },
