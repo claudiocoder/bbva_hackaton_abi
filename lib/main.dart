@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hackaton_bbva_abi/constants/app_theme.dart';
 import 'package:hackaton_bbva_abi/routes.dart';
 import 'package:hackaton_bbva_abi/services/authService.dart';
+import 'package:hackaton_bbva_abi/ui/audio/audio.dart';
 import 'package:hackaton_bbva_abi/ui/login/Login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: Routes.routes,
       theme: themeData,
-      home: AuthService().handleAuth(),
+      home: AudioPage(), //AuthService().handleAuth(),
     );
   }
 }
