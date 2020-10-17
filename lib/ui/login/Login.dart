@@ -2,59 +2,54 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hackaton_bbva_abi/services/authService.dart';
 
-
-
 class Login extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
-
   String phoneNo, smssent, verificationId;
 
   get verifiedSuccess => null;
 
-  Future<void> verfiyPhone() async{
-    final PhoneCodeAutoRetrievalTimeout autoRetrieve = (String verId){
+  Future<void> verfiyPhone() async {
+    final PhoneCodeAutoRetrievalTimeout autoRetrieve = (String verId) {
       print(verId);
       this.verificationId = verId;
     };
-    final PhoneCodeSent smsCodeSent= (String verId, [int forceCodeResent]) {
+    final PhoneCodeSent smsCodeSent = (String verId, [int forceCodeResent]) {
       this.verificationId = verId;
-      smsCodeDialoge(context).then((value){
+      smsCodeDialoge(context).then((value) {
         print("Code Sent");
       });
     };
-    final PhoneVerificationCompleted verifiedSuccess= (AuthCredential auth){
+    final PhoneVerificationCompleted verifiedSuccess = (AuthCredential auth) {
       AuthService().signIn(auth);
     };
 
-
-    final PhoneVerificationFailed verifyFailed= ( e){
+    final PhoneVerificationFailed verifyFailed = (e) {
       print('${e.message}');
     };
 
-
     await FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: phoneNo,
-      timeout: const Duration(seconds: 5),
-      verificationCompleted : verifiedSuccess,
+      timeout: const Duration(seconds: 120),
+      verificationCompleted: verifiedSuccess,
       verificationFailed: verifyFailed,
       codeSent: smsCodeSent,
       codeAutoRetrievalTimeout: autoRetrieve,
-
     );
-
   }
-  Future<bool> smsCodeDialoge(BuildContext context){
-    return showDialog(context: context,
+
+  Future<bool> smsCodeDialoge(BuildContext context) {
+    return showDialog(
+        context: context,
         barrierDismissible: false,
-        builder: (BuildContext context){
+        builder: (BuildContext context) {
           return new AlertDialog(
             title: Text('Enter OTP'),
             content: TextField(
-              onChanged: (value){
+              onChanged: (value) {
                 this.smssent = value;
               },
             ),
@@ -62,29 +57,27 @@ class _LoginState extends State<Login> {
             actions: <Widget>[
               FlatButton(
                 onPressed: () {
-                  AuthService().signInWithOTP(smssent, verificationId);
+                  AuthService().signInWithOTP(smssent, verificationId, phoneNo);
                 },
-                child: Text('done',
-                  style:TextStyle(color: Colors.black)),
+                child: Text('done', style: TextStyle(color: Colors.black)),
               ),
             ],
           );
-        }
-    );
+        });
   }
 
-
-  Future<void> signIn(String smsCode) async{
+  Future<void> signIn(String smsCode) async {
     final AuthCredential credential = PhoneAuthProvider.getCredential(
       verificationId: verificationId,
-      smsCode: smsCode,);
+      smsCode: smsCode,
+    );
 
-    await FirebaseAuth.instance.signInWithCredential(
-        credential).then((user) {
-      Navigator.push(context, MaterialPageRoute(
-        builder: (context) => Login()),
+    await FirebaseAuth.instance.signInWithCredential(credential).then((user) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Login()),
       );
-    }).catchError((e){
+    }).catchError((e) {
       print(e);
     });
   }
@@ -106,8 +99,8 @@ class _LoginState extends State<Login> {
               decoration: InputDecoration(
                 hintText: "telefono",
               ),
-              onChanged: (value){
-                this.phoneNo= value;
+              onChanged: (value) {
+                this.phoneNo = value;
               },
             ),
           ),
@@ -116,14 +109,15 @@ class _LoginState extends State<Login> {
           ),
           RaisedButton(
             onPressed: verfiyPhone,
-            child: Text("verify",
-              style: TextStyle(color: Colors.white),),
+            child: Text(
+              "verify",
+              style: TextStyle(color: Colors.white),
+            ),
             elevation: 7.0,
             color: Colors.blue,
           )
         ],
       ),
-
     );
   }
 }

@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:hackaton_bbva_abi/services/authService.dart';
+import 'package:hackaton_bbva_abi/ui/login/Login.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:hackaton_bbva_abi/widgets/CardImage.dart';
 
@@ -12,6 +14,7 @@ class PictureScreen extends StatefulWidget {
 class _PictureScreenState extends State<PictureScreen> {
   File _image;
   final picker = ImagePicker();
+
 
   Future getImage() async {
     final pickedFile = await picker.getImage(
@@ -35,11 +38,24 @@ class _PictureScreenState extends State<PictureScreen> {
     return Scaffold(
       body: Column(
         children: [
+
           CardImage('assets/images/happy.jpg'),
           Center(
             child: _image == null
                 ? Text('Ninguna Imagen seleccionada')
                 : Image.file(_image),
+          ),
+          RaisedButton(
+            onPressed: (){
+              AuthService().signOut();
+              Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => Login()),
+              );
+            },
+            child: Text("Cerrar Sesion",
+              style: TextStyle(color: Colors.white),),
+            elevation: 7.0,
+            color: Colors.blue,
           ),
         ],
       ),
