@@ -12,12 +12,3 @@ final ThemeData themeData = new ThemeData(
     accentColor: AppColors.orange[500],
     accentColorBrightness: Brightness.light
 );
-
-final ThemeData themeDataDark = ThemeData(
-  fontFamily: FontFamily.roboto,
-  brightness: Brightness.dark,
-  primaryColor: AppColors.orange[500],
-  primaryColorBrightness: Brightness.dark,
-  accentColor: AppColors.orange[500],
-  accentColorBrightness: Brightness.dark,
-);
