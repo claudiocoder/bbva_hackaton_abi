@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hackaton_bbva_abi/services/authService.dart';
 
-import 'package:international_phone_input/international_phone_input.dart';
-
-import '../splash.dart';
 
 
 class Login extends StatefulWidget {
@@ -11,10 +9,8 @@ class Login extends StatefulWidget {
   State<StatefulWidget> createState() => _LoginState();
 }
 
-/// This is the private State class that goes with MyStatefulWidget.
 class _LoginState extends State<Login> {
 
-  var _controller = TextEditingController();
   String phoneNo, smssent, verificationId;
 
   get verifiedSuccess => null;
@@ -30,7 +26,9 @@ class _LoginState extends State<Login> {
         print("Code Sent");
       });
     };
-    final PhoneVerificationCompleted verifiedSuccess= (AuthCredential auth){};
+    final PhoneVerificationCompleted verifiedSuccess= (AuthCredential auth){
+      AuthService().signIn(auth);
+    };
 
 
     final PhoneVerificationFailed verifyFailed= ( e){
@@ -63,32 +61,19 @@ class _LoginState extends State<Login> {
             contentPadding: EdgeInsets.all(10.0),
             actions: <Widget>[
               FlatButton(
-                onPressed: (){
-                  // FirebaseAuth.instance.currentUser().then((user){
-                  //   if(user != null){
-                  //     Navigator.of(context).pop();
-                  //     Navigator.push(
-                  //       context,
-                  //       MaterialPageRoute(
-                  //           builder: (context)=> Login()),
-                  //     );
-                  //
-                  //   }
-                  //   else{
-                  //     Navigator.of(context).pop();
-                  //     signIn(smssent);
-                  //   }
-                  // });
+                onPressed: () {
+                  AuthService().signInWithOTP(smssent, verificationId);
                 },
                 child: Text('done',
-                  style:TextStyle(color: Colors.white) ,),
+                  style:TextStyle(color: Colors.black)),
               ),
             ],
-
           );
         }
     );
   }
+
+
   Future<void> signIn(String smsCode) async{
     final AuthCredential credential = PhoneAuthProvider.getCredential(
       verificationId: verificationId,
