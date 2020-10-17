@@ -67,8 +67,10 @@ class Aes implements Cipher {
   String encrypt() {
     try {
       final padding = ArrayCommons.genRandomWithNonZero(8);
+      print('Padding: $padding');
       var keyndIV = this.getKeyAndIvPadded(this.get_key, padding);
       final key = Key(keyndIV.item1);
+      print('key: $key');
       final iv = IV(keyndIV.item2);
 
       final encrypter = Encrypter(

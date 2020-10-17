@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 import 'package:hackaton_bbva_abi/crypto/algorithms/aes.dart';
-import 'package:hackaton_bbva_abi/crypto/algorithms/cipher.dart';
 import 'package:hackaton_bbva_abi/crypto/algorithms/rsa.dart';
 import 'package:hackaton_bbva_abi/crypto/commons/commons.dart';
 import 'package:hackaton_bbva_abi/crypto/model/encrypted_message.dart';
@@ -46,6 +45,7 @@ class SendE2eData {
 
       return EncryptedMessage('$encryptedMessage.$pawPrint');
     } catch (error) {
+      print('Error: $error');
       throw error;
     }
   }
