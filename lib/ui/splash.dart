@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hackaton_bbva_abi/constants/assets.dart';
 import 'package:hackaton_bbva_abi/routes.dart';
+import 'package:hackaton_bbva_abi/services/firestore.dart';
+import 'package:hackaton_bbva_abi/services/notification.dart';
 import 'package:hackaton_bbva_abi/widgets/app_icon_widget.dart';
 
 // import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
@@ -13,9 +15,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
   @override
   void initState() {
     super.initState();
+
     startTimer();
   }
 

@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:hackaton_bbva_abi/ui/login/Login.dart';
 import 'package:hackaton_bbva_abi/ui/splash.dart';
 
+import 'notification.dart';
 
 class AuthService {
+  String phoneNumber;
+
   //Handles Auth
   handleAuth() {
     return StreamBuilder(
@@ -28,9 +31,12 @@ class AuthService {
     FirebaseAuth.instance.signInWithCredential(authCreds);
   }
 
-  signInWithOTP(smsCode, verId) {
-    AuthCredential authCreds = PhoneAuthProvider.credential(
+  signInWithOTP(smsCode, verId, phoneNumber) {
+    this.phoneNumber = phoneNumber;
+    AuthCredential authCreds = PhoneAuthProvider.getCredential(
         verificationId: verId, smsCode: smsCode);
+
+    PushNotificationsManager().initFireMessaging(phoneNumber);
     signIn(authCreds);
   }
 }
