@@ -31,7 +31,7 @@ class SendE2eData {
       aes.set_key(EK);
       final finalMessage = aes.encrypt();
 
-      Rsa rsa = new Rsa(publicKey);
+      Rsa rsa = new Rsa(this.publicKey);
       rsa.set_message(finalMessage);
       final encryptedBio = rsa.encrypt();
 

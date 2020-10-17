@@ -56,7 +56,7 @@ class Aes implements Cipher {
   }
 
   void set_random_padding(String random_padding) {
-    this.encrypted_message = random_padding;
+    this.random_padding = random_padding;
   }
 
   String get get_random_padding {
@@ -76,6 +76,8 @@ class Aes implements Cipher {
       final encrypter = Encrypter(
           AES(key, mode: AESMode.cbc, padding: this.get_padding_type));
       final encrypted = encrypter.encrypt(this.get_message, iv: iv);
+      print('Padding: ${this.get_random_padding}');
+      
       Uint8List encryptedBytesWithPadding = Uint8List.fromList(
           ArrayCommons.createUint8ListFromString(this.get_random_padding) + padding + encrypted.bytes);
       return base64.encode(encryptedBytesWithPadding);
