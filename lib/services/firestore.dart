@@ -10,9 +10,8 @@ class DataBaseService {
   void createDataTokenAuth(phoneNumber, token) {
     databaseReference.child("Usuarios").push().set(
       {
-        phoneNumber: {
-          'tokenPush': token
-        }
+        "PhoneNumber": phoneNumber,
+        "token": token
       }
     );
   }
