@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,16 +15,18 @@ class _PictureScreenState extends State<PictureScreen> {
 
   Future getImage() async {
     final pickedFile = await picker.getImage(
-      source: ImageSource.camera,
-      preferredCameraDevice: CameraDevice.front,
-      maxWidth: 450.0,
-      maxHeight: 450.0,
-    );
-    // final bytes = await pickedFile.readAsBytes();
+        source: ImageSource.camera,
+        preferredCameraDevice: CameraDevice.front,
+        maxWidth: 450.0,
+        maxHeight: 450.0,
+        );
+    final bytes = await pickedFile.readAsBytes();
+    String base64String = base64Encode(bytes);
+    print(base64String);  
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
-      }
+      } 
     });
   }
 
