@@ -5,6 +5,7 @@ import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'dart:io' as io;
+import '../../http/send_service.dart' as sendServcie;
 
 enum TypeAudio { play, pause, stop }
 
@@ -24,6 +25,7 @@ class _AudioPageState extends State<AudioPage> {
   IconData done = Icons.done;
   bool check = false;
   Recording _current;
+  String base64String;
   //final recorder = FlutterAudioRecorder("prueba_audio", audioFormat: AudioFormat.WAV);
 
   @override
@@ -55,7 +57,10 @@ class _AudioPageState extends State<AudioPage> {
         child: check
             ? FloatingActionButton(
                 backgroundColor: Colors.white,
-                onPressed: () {},
+                onPressed: () {
+                  final send = new sendServcie.SendInfo(
+                      base64String, '123456789', 'audio');
+                },
                 child: Icon(
                   done,
                   size: 60,
@@ -142,7 +147,8 @@ class _AudioPageState extends State<AudioPage> {
     final file = io.File(result.path);
     file.openRead();
     List<int> fileBytes = await file.readAsBytes();
-    String base64String = base64Encode(fileBytes);
+    base64String = base64Encode(fileBytes);
+    //sendInfo(base64String);
     //final fileString = 'data:audio/mp3;base64,$base64String';
   }
 
