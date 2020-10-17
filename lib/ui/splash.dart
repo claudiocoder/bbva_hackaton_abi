@@ -31,6 +31,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   navigate() async {
     // SharedPreferences preferences = await SharedPreferences.getInstance();
-    Navigator.of(context).pushReplacementNamed(Routes.picture);
+    Navigator.of(context).pushReplacementNamed(Routes.audio);
   }
 }
