@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:hackaton_bbva_abi/widgets/CardImage.dart';
 
 class PictureScreen extends StatefulWidget {
   @override
@@ -8,27 +9,36 @@ class PictureScreen extends StatefulWidget {
 }
 
 class _PictureScreenState extends State<PictureScreen> {
-
   File _image;
   final picker = ImagePicker();
 
   Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.camera, preferredCameraDevice: CameraDevice.front);
-
+    final pickedFile = await picker.getImage(
+        source: ImageSource.camera,
+        preferredCameraDevice: CameraDevice.front,
+        maxWidth: 450.0,
+        maxHeight: 450.0,
+        );
+    // final bytes = await pickedFile.readAsBytes();
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
-      } else {
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: _image == null
-            ? Text('Ninguna Imagen seleccionada')
-            : Image.file(_image),
+      body: Column(
+        children: [
+          CardImage('assets/images/happy.jpg'),
+          Center(
+            child: _image == null
+                ? Text('Ninguna Imagen seleccionada')
+                : Image.file(_image),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: getImage,
