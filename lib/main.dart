@@ -6,6 +6,8 @@ import 'package:hackaton_bbva_abi/services/authService.dart';
 import 'package:hackaton_bbva_abi/ui/audio/audio.dart';
 import 'package:hackaton_bbva_abi/ui/login/Login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hackaton_bbva_abi/ui/picture/picture.dart';
+import 'package:hackaton_bbva_abi/ui/ticket/ticket.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: Routes.routes,
       theme: themeData,
-      home: AudioPage(), //AuthService().handleAuth(),
+      home: TicketPage(), //AuthService().handleAuth(),
     );
   }
 }

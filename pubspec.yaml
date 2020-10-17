@@ -43,6 +43,8 @@ dependencies:
   path_provider: ^1.6.21
   audioplayers: ^0.16.1
   signature: ^3.2.0 
+  flutter_ticket_widget: ^0.0.1
+  intl: ^0.16.1
 
 dev_dependencies:
   flutter_test:

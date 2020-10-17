@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hackaton_bbva_abi/services/authService.dart';
 import 'package:hackaton_bbva_abi/ui/login/Login.dart';
+import 'package:hackaton_bbva_abi/http/send_service.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:hackaton_bbva_abi/widgets/CardImage.dart';
 
@@ -18,19 +19,20 @@ class _PictureScreenState extends State<PictureScreen> {
 
   Future getImage() async {
     final pickedFile = await picker.getImage(
-        source: ImageSource.camera,
-        preferredCameraDevice: CameraDevice.front,
-        maxWidth: 450.0,
-        maxHeight: 450.0,
-        );
+      source: ImageSource.camera,
+      preferredCameraDevice: CameraDevice.front,
+      maxWidth: 450.0,
+      maxHeight: 450.0,
+    );
     final bytes = await pickedFile.readAsBytes();
     String base64String = base64Encode(bytes);
-    print(base64String);  
+    final send = new SendInfo(base64String, '123456789', 'image');
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
-      } 
+      }
     });
+    await send.sendInfo();
   }
 
   @override

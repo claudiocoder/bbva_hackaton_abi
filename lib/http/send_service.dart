@@ -17,14 +17,12 @@ class SendInfo {
 
   Future sendInfo() async {
     final url = 'http://192.168.0.4:3000/$path';
-    Map map = {"data": 'data'};
-    final bodyString = json.encode(map);
-    final s = new session.SessionService();
-    final key = await s.getPublicKey();
-    final send = new e2e.SendE2eData(this.base64, this.signature, key);
-    final encrytp = send.doProcess();
+    //final s = new session.SessionService();
+    //final key = await s.getPublicKey();
+    //final send = new e2e.SendE2eData(this.base64, this.signature, key);
+    //final encrytp = send.doProcess();
     final resp =
-        await http.post(url, body: {'data': encrytp.encryptedCredential});
+        await http.post(url, body: {'data': this.base64});
     final decodeData = json.decode(resp.body);
     print('Respuesta: $decodeData');
     return decodeData;
