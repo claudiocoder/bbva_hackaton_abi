@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "681427817099",
+    "firebase_url": "https://teamknightfall-d7281.firebaseio.com",
+    "project_id": "teamknightfall-d7281",
+    "storage_bucket": "teamknightfall-d7281.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681427817099:android:6e7f3fe47bee00a889ba8e",
+        "android_client_info": {
+          "package_name": "com.knightfall.hackaton_bbva_abi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681427817099-1bc9tjb00mgc3ma7qoartv01ki6so82q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-qTMArGKL1bLRv-1FfMpvUwZvgaMII38"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "681427817099-1bc9tjb00mgc3ma7qoartv01ki6so82q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

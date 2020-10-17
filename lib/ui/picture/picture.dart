@@ -14,11 +14,11 @@ class _PictureScreenState extends State<PictureScreen> {
 
   Future getImage() async {
     final pickedFile = await picker.getImage(
-        source: ImageSource.camera,
-        preferredCameraDevice: CameraDevice.front,
-        maxWidth: 450.0,
-        maxHeight: 450.0,
-        );
+      source: ImageSource.camera,
+      preferredCameraDevice: CameraDevice.front,
+      maxWidth: 450.0,
+      maxHeight: 450.0,
+    );
     // final bytes = await pickedFile.readAsBytes();
     setState(() {
       if (pickedFile != null) {
