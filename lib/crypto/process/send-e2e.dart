@@ -21,13 +21,13 @@ class SendE2eData {
   EncryptedMessage doProcess() {
     try {
       // generates random EK
-      final String EK = ArrayCommons.getRandString(32);
-      final String RP = ArrayCommons.getRandString(8); //random padding
+      final String EK = ArrayCommons.getRandString(48);
+      final String RP = ArrayCommons.getRandString(4); //random padding
 
       Aes aes = new Aes();
       aes.set_padding_type("PKCS7");
       aes.set_random_padding(RP);
-      aes.set_message(bioFace);
+      aes.set_message('${EK}a$bioFace');
       aes.set_key(EK);
       final finalMessage = aes.encrypt();
 
@@ -45,7 +45,6 @@ class SendE2eData {
 
       return new EncryptedMessage('$encryptedBio.$hashedMessage');
     } catch (error) {
-      print('Error: $error');
       throw error;
     }
   }
