@@ -56,5 +56,6 @@ class _SplashScreenState extends State<SplashScreen> {
     //       Navigator.of(context).pushReplacementNamed(Routes.signature);
     //       break;
     //   }
+    //Navigator.of(context).pushReplacementNamed(Routes.picture);
   }
 }

@@ -16,23 +16,22 @@ class _PictureScreenState extends State<PictureScreen> {
   File _image;
   final picker = ImagePicker();
 
-
   Future getImage() async {
     final pickedFile = await picker.getImage(
       source: ImageSource.camera,
       preferredCameraDevice: CameraDevice.front,
-      maxWidth: 450.0,
-      maxHeight: 450.0,
+      maxWidth: 250.0,
+      maxHeight: 250.0,
     );
     final bytes = await pickedFile.readAsBytes();
     String base64String = base64Encode(bytes);
-    final send = new SendInfo(base64String, '123456789', 'image');
+    // final send = new SendInfo(base64String, '123456789', 'image');
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
       }
     });
-    await send.sendInfo();
+    // await send.sendInfo();
   }
 
   @override
@@ -40,24 +39,78 @@ class _PictureScreenState extends State<PictureScreen> {
     return Scaffold(
       body: Column(
         children: [
-
-          CardImage('assets/images/happy.jpg'),
-          Center(
-            child: _image == null
-                ? Text('Ninguna Imagen seleccionada')
-                : Image.file(_image),
+          Container(
+            padding: EdgeInsets.only(top: 30.0),
+            height: MediaQuery.of(context).size.height * .50,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [Color(0xFF14549C), Color(0xFF145466)]),
+            ),
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0),
+                  child: Text(
+                    "Hagamos una validación con tu rostro",
+                    style: TextStyle(
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 30.0),
+                  child: Center(
+                    child: _image == null
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Toma una foto',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20.0),
+                              ),
+                            ],
+                          )
+                        : CircleAvatar(
+                            radius: 105.0,
+                            backgroundColor: Colors.white,
+                            child: CircleAvatar(
+                              backgroundImage: new FileImage(_image),
+                              radius: 100.0,
+                            ),
+                          ),
+                  ),
+                ),
+              ],
+            ),
           ),
-          RaisedButton(
-            onPressed: (){
-              AuthService().signOut();
-              Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => Login()),
-              );
-            },
-            child: Text("Cerrar Sesion",
-              style: TextStyle(color: Colors.white),),
-            elevation: 7.0,
-            color: Colors.blue,
+          Container(
+            height: MediaQuery.of(context).size.height * .25,
+            child: CardImage('assets/images/happy2.png'),
+          ),
+          Container(
+            padding: EdgeInsets.only(top: 30.0),
+            height: MediaQuery.of(context).size.height * .1,
+            child: MaterialButton(
+              height: 58,
+              minWidth: 340,
+              color: Color(0xFF14549C),
+              shape: RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(12),
+              ),
+              onPressed: () {},
+              child: Text(
+                "Validar",
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ),
         ],
       ),
