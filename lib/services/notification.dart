@@ -1,5 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-
+import 'package:hackaton_bbva_abi/services/dataService.dart';
 import 'firestore.dart';
 
 class PushNotificationsManager {
@@ -12,14 +12,16 @@ class PushNotificationsManager {
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
+        DataService().setData(message["data"]["type"], message["data"]["emoji"], message["data"]["text"]);
 
       },
       onLaunch: (Map<String, dynamic> message) async {
-        print("onLaunch: $message");
-
+        // print("onLaunch: $message  hola el mesaggge ");
+        DataService().setData(message["data"]["type"], message["data"]["emoji"], message["data"]["text"]);
       },
       onResume: (Map<String, dynamic> message) async {
         print("onResume: $message");
+        DataService().setData(message["data"]["type"], message["data"]["emoji"], message["data"]["text"]);
 
       },
     );
