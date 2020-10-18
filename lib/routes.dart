@@ -5,6 +5,7 @@ import 'package:hackaton_bbva_abi/ui/picture/picture.dart';
 import 'package:hackaton_bbva_abi/ui/login/Login.dart';
 import 'package:hackaton_bbva_abi/ui/signature/signature.dart';
 import 'package:hackaton_bbva_abi/ui/ticket/ticket.dart';
+import 'package:hackaton_bbva_abi/ui/finger/finger.dart';
 
 class Routes {
   Routes._();
@@ -16,13 +17,15 @@ class Routes {
   static const String login = 'login';
   static const String signature = 'signature';
   static const String ticket = 'ticket';
+  static const String finger = '/finger';
 
   static final routes = <String, WidgetBuilder>{
     splash: (context) => SplashScreen(),
     login: (context) => Login(),
     picture: (context) => PictureScreen(),
     audio: (context) => AudioPage(),
-    signature:(context) => SignatureScrenn(),
-    ticket: (context) => TicketPage()
+    signature:(context) => SignatureScreen(),
+    ticket: (context) => TicketPage(),
+    finger:(context) => FingerScreen(),
   };
 }

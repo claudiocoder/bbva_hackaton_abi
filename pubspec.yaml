@@ -45,6 +45,7 @@ dependencies:
   signature: ^3.2.0 
   flutter_ticket_widget: ^0.0.1
   intl: ^0.16.1
+  local_auth: ^0.6.3+3
 
 dev_dependencies:
   flutter_test:

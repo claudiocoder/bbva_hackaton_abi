@@ -20,8 +20,8 @@ class _PictureScreenState extends State<PictureScreen> {
     final pickedFile = await picker.getImage(
       source: ImageSource.camera,
       preferredCameraDevice: CameraDevice.front,
-      maxWidth: 250.0,
-      maxHeight: 250.0,
+      maxWidth: MediaQuery.of(context).size.width * .80,
+      maxHeight: MediaQuery.of(context).size.height * 80,
     );
     final bytes = await pickedFile.readAsBytes();
     String base64String = base64Encode(bytes);
@@ -69,18 +69,18 @@ class _PictureScreenState extends State<PictureScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Toma una foto',
+                                'Imita al gato',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 20.0),
                               ),
                             ],
                           )
                         : CircleAvatar(
-                            radius: 105.0,
+                            radius: 70.0,
                             backgroundColor: Colors.white,
                             child: CircleAvatar(
                               backgroundImage: new FileImage(_image),
-                              radius: 100.0,
+                              radius: 65.0,
                             ),
                           ),
                   ),
@@ -90,7 +90,7 @@ class _PictureScreenState extends State<PictureScreen> {
           ),
           Container(
             height: MediaQuery.of(context).size.height * .25,
-            child: CardImage('assets/images/happy2.png'),
+            child: CardImage('assets/images/cat.png'),
           ),
           Container(
             padding: EdgeInsets.only(top: 30.0),
