@@ -13,8 +13,8 @@ void main() {
   test('AES encryption', () {
     final String bioFace = "Mensaje de prueba";
     // generates random EK
-    final String EK = ArrayCommons.getRandString(32);
-    final String RP = ArrayCommons.getRandString(8); //random padding
+    final String EK = ArrayCommons.getRandString(48);
+    final String RP = ArrayCommons.getRandString(4); //random padding
 
     Aes aes = Aes();
     aes.set_padding_type("PKCS7");
@@ -22,6 +22,10 @@ void main() {
     aes.set_message(bioFace);
     aes.set_key(EK);
     final finalMessage = aes.encrypt();
-    print('Final message: $finalMessage');
+    final decyptedMessage = aes.decrypt();
+    expect(finalMessage != null, true);
+    expect(finalMessage.length > 0, true);
+    expect(decyptedMessage, bioFace);
+    print(BigInt.parse('10001', radix: 16).toString());
   });
 }

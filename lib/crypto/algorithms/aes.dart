@@ -67,20 +67,21 @@ class Aes implements Cipher {
   String encrypt() {
     try {
       final padding = ArrayCommons.genRandomWithNonZero(8);
-      print('Padding: $padding');
       var keyndIV = this.getKeyAndIvPadded(this.get_key, padding);
       final key = Key(keyndIV.item1);
-      print('key: $key');
       final iv = IV(keyndIV.item2);
 
       final encrypter = Encrypter(
           AES(key, mode: AESMode.cbc, padding: this.get_padding_type));
       final encrypted = encrypter.encrypt(this.get_message, iv: iv);
-      print('Padding: ${this.get_random_padding}');
-      
+
       Uint8List encryptedBytesWithPadding = Uint8List.fromList(
-          ArrayCommons.createUint8ListFromString(this.get_random_padding) + padding + encrypted.bytes);
-      return base64.encode(encryptedBytesWithPadding);
+          ArrayCommons.createUint8ListFromString(this.get_random_padding) +
+              padding +
+              encrypted.bytes);
+      final encryptedMessage = base64.encode(encryptedBytesWithPadding);
+      this.set_encrypted_message(encryptedMessage);
+      return encryptedMessage;
     } catch (error) {
       throw error;
     }
@@ -89,10 +90,11 @@ class Aes implements Cipher {
   @override
   String decrypt() {
     try {
-      Uint8List encryptedBytesWithPadding = base64.decode(this.get_encrypted_message);
+      Uint8List encryptedBytesWithPadding =
+          base64.decode(this.get_encrypted_message);
 
-      Uint8List encryptedBytes =
-          encryptedBytesWithPadding.sublist(16, encryptedBytesWithPadding.length);
+      Uint8List encryptedBytes = encryptedBytesWithPadding.sublist(
+          16, encryptedBytesWithPadding.length);
       final padding = encryptedBytesWithPadding.sublist(8, 16);
       var keyndIV = this.getKeyAndIvPadded(this.key, padding);
       final key = Key(keyndIV.item1);
