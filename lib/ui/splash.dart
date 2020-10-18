@@ -40,22 +40,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   navigate() async {
-    final data = DataService().getData();
-    Navigator.of(context).pushReplacementNamed(data['type'].toString()) ;
-    // SharedPreferences preferences = await SharedPreferences.getInstance();
-    //final data = DataService().getData();
-    //   print('=======================================>>>>>>data $data');
-    //   switch (data['type']) {
-    //     case Routes.audio:
-    //       Navigator.of(context).pushReplacementNamed(Routes.audio);
-    //       break;
-    //     case Routes.picture:
-    //       Navigator.of(context).pushReplacementNamed(Routes.picture);
-    //       break;
-    //     default:
-    //       Navigator.of(context).pushReplacementNamed(Routes.signature);
-    //       break;
-    //   }
-    //Navigator.of(context).pushReplacementNamed(Routes.picture);
+    Navigator.of(context).pushReplacementNamed('picture');
   }
 }

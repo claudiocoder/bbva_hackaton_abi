@@ -1,5 +1,8 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_ticket_widget/flutter_ticket_widget.dart';
+import 'package:hackaton_bbva_abi/services/dataService.dart';
 import 'package:intl/intl.dart';
 
 class TicketPage extends StatefulWidget {
@@ -10,6 +13,15 @@ class TicketPage extends StatefulWidget {
 }
 
 class _TicketPageState extends State<TicketPage> {
+  final dataService = DataService();
+  var info;
+
+  @override
+  void initState() {
+    super.initState();
+    info = dataService.getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -17,11 +29,14 @@ class _TicketPageState extends State<TicketPage> {
           backgroundColor: Color.fromRGBO(6, 35, 72, 1),
           body: ListView(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-              children: [_template()])),
+              children: [
+                _template(info['source'],
+                    info['destination'], 125554.0)
+              ])),
     );
   }
 
-  Widget _template() {
+  Widget _template(String source, String destination, amount) {
     return FlutterTicketWidget(
         width: 350.0,
         height: 450.0,
@@ -32,8 +47,8 @@ class _TicketPageState extends State<TicketPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                _sourceAndDesination('Origen', 'Cuenta Efectivo **123'),
-                _sourceAndDesination('Destino', 'Pago a Uber(Desde la Aplicacion Movil)'),
+                _sourceAndDesination('Origen', source),
+                _sourceAndDesination('Destino', destination),
                 Container(
                   color: Color.fromRGBO(6, 35, 72, 1),
                   margin: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
@@ -42,7 +57,7 @@ class _TicketPageState extends State<TicketPage> {
                     color: Color.fromRGBO(6, 35, 72, 1),
                   ),
                 ),
-                _amount(12325.3),
+                _amount(amount),
                 _buttons(),
               ],
             )));
@@ -101,10 +116,7 @@ class _TicketPageState extends State<TicketPage> {
         children: [
           Text(
             money,
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.w500
-            ),
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
           )
         ],
       ),

@@ -1,11 +1,13 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:hackaton_bbva_abi/services/dataService.dart';
-import '../routes.dart';
 import 'firestore.dart';
 import 'package:flutter/material.dart';
+import '../services/dataService.dart';
 
 class PushNotificationsManager {
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  final GlobalKey<NavigatorState> navigatorKey =
+      new GlobalKey<NavigatorState>();
 
   void initFireMessaging(phoneNumber) {
     _firebaseMessaging.getToken().then((String token) {
@@ -21,19 +23,11 @@ class PushNotificationsManager {
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
-        DataService().setData(message["data"]["type"], message["data"]["emoji"],
-            message["data"]["text"]);
       },
       onLaunch: (Map<String, dynamic> message) async {
-        // print("onLaunch: $message  hola el mesaggge ");
-        DataService().setData(message["data"]["type"], message["data"]["emoji"],
-            message["data"]["text"]);
       },
       onResume: (Map<String, dynamic> message) async {
         print("onResume: $message");
-        DataService().setData(message["data"]["type"], message["data"]["emoji"],
-            message["data"]["text"]);
-        navigate(message["data"]["type"].toString(), context);
       },
     );
     _firebaseMessaging.onIosSettingsRegistered
@@ -42,21 +36,5 @@ class PushNotificationsManager {
     });
   }
 
-  navigate(name, context) {
-    print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Context: $context');
-    print('>>>>>>>>>>>>>>>>>>>>Name: $name');
-    name = 'audio';
-    switch (name) {
-      case 'audio':
-        print('??????????????????????>>>AUDIo');
-        Navigator.of(context).pushNamed('audio');
-        break;
-      case Routes.picture:
-        Navigator.of(context).pushReplacementNamed(Routes.picture);
-        break;
-      default:
-        Navigator.of(context).pushReplacementNamed(Routes.signature);
-        break;
-    }
-  }
+  
 }
