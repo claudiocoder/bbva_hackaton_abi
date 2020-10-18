@@ -33,6 +33,6 @@ class Routes {
     ticket: (context) => TicketPage(),
     finger: (context) => FingerScreen(),
     status: (context) => StatusPage(),
-    home: (context) => HomePage()
+    home: (context) => Home()
   };
 }

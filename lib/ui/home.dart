@@ -3,18 +3,12 @@ import 'package:flutter/material.dart';
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          // Define the default brightness and colors.
-          primaryColor: Color(0xFF14549C),
-          brightness: Brightness.dark),
-      color: Color(0xFF14549C),
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text('ABI'),
         ),
         body: HomePage(),
-      ),
+
     );
   }
 }
