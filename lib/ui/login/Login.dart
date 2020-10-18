@@ -48,7 +48,7 @@ class _LoginState extends State<Login> {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return new AlertDialog(
-            title: Text('Enter OTP'),
+            title: Text('Ingresa código de seguridad', textAlign: TextAlign.left,),
             content: TextField(
               onChanged: (value) {
                 this.smssent = value;
@@ -60,7 +60,10 @@ class _LoginState extends State<Login> {
                 onPressed: () {
                   AuthService().signInWithOTP(smssent, verificationId, phoneNo);
                 },
-                child: Text('done', style: TextStyle(color: Colors.black)),
+                child: Text(
+                  'Listo',
+                  style: TextStyle(color: Colors.black, fontSize: 18.0),
+                ),
               ),
             ],
           );
@@ -106,9 +109,8 @@ class _LoginState extends State<Login> {
                 color: Colors.black,
               ),
               decoration: InputDecoration(
-                hintText: 'Ingresa tu número celular',
-                fillColor: Colors.white38
-              ),
+                  hintText: 'Ingresa tu número celular',
+                  fillColor: Colors.white38),
               onChanged: (value) {
                 this.phoneNo = value;
               },

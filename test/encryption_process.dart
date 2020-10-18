@@ -23,6 +23,8 @@ void main() {
       pb
     );
     final message = process.doProcess();
+    expect(message != null, true);
+    expect(message.get_encryptedCredential.length > 0, true);
     print('The final message is: ${message.encryptedCredential}');
   });
 }
