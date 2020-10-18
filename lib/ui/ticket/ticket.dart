@@ -34,7 +34,7 @@ class _TicketPageState extends State<TicketPage> {
           body: ListView(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
               children: [
-                _template(info['source'], info['destination'], 125554.0)
+                _template(info['source'], info['destination'], 125.0)
               ])),
     );
   }
@@ -51,7 +51,7 @@ class _TicketPageState extends State<TicketPage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 _sourceAndDesination('Origen', 'Cuenta de Efectivo **752'),
-                _sourceAndDesination('Destino', 'Pago a Sat (Desde la aplicacion movil)'),
+                _sourceAndDesination('Destino', 'Pago de Viaje en Uber'),
                 Container(
                   color: Color.fromRGBO(6, 35, 72, 1),
                   margin: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
