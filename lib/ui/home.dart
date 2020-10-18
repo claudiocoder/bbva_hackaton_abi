@@ -5,7 +5,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('ABI'),
+          title: Text('ABI',style: TextStyle(color: Colors.white)),
         ),
         body: HomePage(),
 
