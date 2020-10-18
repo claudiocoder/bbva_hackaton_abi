@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:hackaton_bbva_abi/ui/end/operationStatus.dart';
 import 'package:signature/signature.dart';
 import 'package:hackaton_bbva_abi/constants/font_family.dart';
 
@@ -119,8 +120,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
                                               new BorderRadius.circular(12),
                                         ),
                                         onPressed: () {
-                                          Navigator.of(context)
-                                              .pushReplacementNamed('end');
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => StatusPage()));
                                         },
                                         child: Text(
                                           "Confirmar",

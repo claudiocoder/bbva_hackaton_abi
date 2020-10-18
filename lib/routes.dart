@@ -20,7 +20,7 @@ class Routes {
   static const String signature = 'signature';
   static const String ticket = 'ticket';
   static const String finger = 'finger';
-  static const String status = 'end';
+  static const String status = 'status';
   static const String home = 'home';
 
   static final routes = <String, WidgetBuilder>{

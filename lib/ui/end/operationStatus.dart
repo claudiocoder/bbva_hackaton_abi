@@ -9,7 +9,7 @@ class StatusPage extends StatefulWidget {
 }
 
 class _StatusPageState extends State<StatusPage> {
-  bool status = false;
+  bool status = true;
 
   @override
   Widget build(BuildContext context) {
