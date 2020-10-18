@@ -37,15 +37,32 @@ class _AudioPageState extends State<AudioPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: Container(
         child: Container(
-          color: Color.fromRGBO(6, 35, 72, 1),
+          color: Colors.white,
           child: Column(
             children: [
-              _title(),
-              _text(),
-              _graph(),
-              _botones(),
+              Container(
+                padding: EdgeInsets.only(top: 20.0),
+                height: MediaQuery.of(context).size.height * .50,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [Color(0xFF14549C), Color(0xFF145466)]),
+                ),
+                child: Column(
+                  children: [
+                    _title(),
+                    _text(),
+                    _graph(),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(top:20),
+                child: _botones(),
+              )
             ],
           ),
         ),
@@ -56,7 +73,7 @@ class _AudioPageState extends State<AudioPage> {
         height: 75,
         child: check
             ? FloatingActionButton(
-                backgroundColor: Colors.white,
+                backgroundColor: Color(0xFF14549C),
                 onPressed: () {
                   final send = new sendServcie.SendInfo(
                       base64String, '123456789', 'audio');
@@ -64,7 +81,7 @@ class _AudioPageState extends State<AudioPage> {
                 child: Icon(
                   done,
                   size: 60,
-                  color: Colors.blueAccent,
+                  color: Colors.white,
                 ),
               )
             : Container(),
