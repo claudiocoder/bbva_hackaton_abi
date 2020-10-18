@@ -8,15 +8,27 @@ import 'package:hackaton_bbva_abi/ui/login/Login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hackaton_bbva_abi/ui/picture/picture.dart';
 import 'package:hackaton_bbva_abi/ui/ticket/ticket.dart';
+import './services/notification.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  void initState() {
+    super.initState();
+    final PushNotificationsManager noti = new PushNotificationsManager();
+    noti.listenNotify(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

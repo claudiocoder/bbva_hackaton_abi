@@ -10,12 +10,12 @@ class Routes {
   Routes._();
 
   //static variables
-  static const String splash = '/splash';
-  static const String picture = '/picture';
-  static const String audio = '/audio';
-  static const String login = './login';
-  static const String signature = '/signature';
-  static const String ticket = './ticket';
+  static const String splash = 'splash';
+  static const String picture = 'picture';
+  static const String audio = 'audio';
+  static const String login = 'login';
+  static const String signature = 'signature';
+  static const String ticket = 'ticket';
 
   static final routes = <String, WidgetBuilder>{
     splash: (context) => SplashScreen(),
