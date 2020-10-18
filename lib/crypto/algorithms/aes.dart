@@ -98,7 +98,6 @@ class Aes implements Cipher {
 
       Uint8List encryptedBytes = encryptedBytesWithPadding.sublist(
           16, encryptedBytesWithPadding.length);
-      print('Decrypted: ${base64.encode(encryptedBytes)}');
       final padding = encryptedBytesWithPadding.sublist(8, 16);
       var keyndIV = this.getKeyAndIvPadded(this.key, padding);
       final key = Key(keyndIV.item1);
