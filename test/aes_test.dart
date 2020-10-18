@@ -26,6 +26,5 @@ void main() {
     expect(finalMessage != null, true);
     expect(finalMessage.length > 0, true);
     expect(decyptedMessage, bioFace);
-    print(BigInt.parse('10001', radix: 16).toString());
   });
 }

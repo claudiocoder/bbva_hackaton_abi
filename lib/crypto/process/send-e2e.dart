@@ -27,12 +27,12 @@ class SendE2eData {
       Aes aes = new Aes();
       aes.set_padding_type("PKCS7");
       aes.set_random_padding(RP);
-      aes.set_message('${EK}a$bioFace');
+      aes.set_message('$bioFace');
       aes.set_key(EK);
       final finalMessage = aes.encrypt();
 
       Rsa rsa = new Rsa(this.publicKey);
-      rsa.set_message(finalMessage);
+      rsa.set_message('${aes.ek}.${aes.get_iv}.$finalMessage');
       final encryptedBio = rsa.encrypt();
 
       final key = utf8.encode(pawPrint);

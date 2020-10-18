@@ -10,6 +10,7 @@ import 'package:hackaton_bbva_abi/crypto/commons/commons.dart';
 class Aes implements Cipher {
   String key;
   String iv;
+  String ek;
   String message;
   String padding_type; // PCKS7
   String encrypted_message; // as base64
@@ -70,6 +71,8 @@ class Aes implements Cipher {
       var keyndIV = this.getKeyAndIvPadded(this.get_key, padding);
       final key = Key(keyndIV.item1);
       final iv = IV(keyndIV.item2);
+      this.set_iv(iv.base16);
+      this.ek = key.base16;
 
       final encrypter = Encrypter(
           AES(key, mode: AESMode.cbc, padding: this.get_padding_type));
@@ -95,6 +98,7 @@ class Aes implements Cipher {
 
       Uint8List encryptedBytes = encryptedBytesWithPadding.sublist(
           16, encryptedBytesWithPadding.length);
+      print('Decrypted: ${base64.encode(encryptedBytes)}');
       final padding = encryptedBytesWithPadding.sublist(8, 16);
       var keyndIV = this.getKeyAndIvPadded(this.key, padding);
       final key = Key(keyndIV.item1);
