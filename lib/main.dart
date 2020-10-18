@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
     pushProvider.mensajesStream.listen((arg) {
       print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%: $arg');
       //Navigator.pushNamed(context, 'mensaje');
-      navigatorKey.currentState.pushNamed(arg);
+      navigatorKey.currentState.pushNamed('ticket',arguments: arg);
     });
   }
 

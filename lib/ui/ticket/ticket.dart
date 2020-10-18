@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class TicketPage extends StatefulWidget {
 class _TicketPageState extends State<TicketPage> {
   final dataService = DataService();
   var info;
+  String arg;
 
   @override
   void initState() {
@@ -24,14 +26,15 @@ class _TicketPageState extends State<TicketPage> {
 
   @override
   Widget build(BuildContext context) {
+    arg = ModalRoute.of(context).settings.arguments;
+    print('INFO: ${info}');
     return SafeArea(
       child: Scaffold(
           backgroundColor: Color.fromRGBO(6, 35, 72, 1),
           body: ListView(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
               children: [
-                _template(info['source'],
-                    info['destination'], 125554.0)
+                _template(info['source'], info['destination'], 125554.0)
               ])),
     );
   }
@@ -47,8 +50,8 @@ class _TicketPageState extends State<TicketPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                _sourceAndDesination('Origen', source),
-                _sourceAndDesination('Destino', destination),
+                _sourceAndDesination('Origen', 'Cuenta de Efectivo **752'),
+                _sourceAndDesination('Destino', 'Pago a Sat (Desde la aplicacion movil)'),
                 Container(
                   color: Color.fromRGBO(6, 35, 72, 1),
                   margin: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
@@ -68,14 +71,15 @@ class _TicketPageState extends State<TicketPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _button('Rechazar', Colors.red),
-          _button('Aceptar', Colors.green),
+          _button('Rechazar', Colors.red, () {}),
+          _button('Aceptar', Colors.green,
+              () => Navigator.of(context).pushReplacementNamed(arg)),
         ],
       ),
     );
   }
 
-  Widget _button(String name, Color nameColor) {
+  Widget _button(String name, Color nameColor, Function action) {
     return Expanded(
       child: Container(
         child: RaisedButton(
@@ -84,7 +88,7 @@ class _TicketPageState extends State<TicketPage> {
             borderRadius: BorderRadius.circular(0),
           ),
           padding: EdgeInsets.symmetric(vertical: 20),
-          onPressed: () {},
+          onPressed: action,
           child: Text(name, style: TextStyle(fontSize: 20)),
           color: nameColor,
           textColor: Colors.white,

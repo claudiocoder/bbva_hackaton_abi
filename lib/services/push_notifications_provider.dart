@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:hackaton_bbva_abi/services/dataService.dart';
@@ -51,7 +52,7 @@ class PushNotificationsProvider {
       message['data']['destination'],
       message['data']['amount'],
     );
-    _mesanjesStreamController.sink.add('ticket');
+    _mesanjesStreamController.sink.add(message['data']['type']);
   }
 
   Future<dynamic> onLaunch(Map<String, dynamic> message) async {
@@ -65,7 +66,7 @@ class PushNotificationsProvider {
       message['data']['destination'],
       message['data']['amount'],
     );
-    _mesanjesStreamController.sink.add('ticket');
+    _mesanjesStreamController.sink.add(message['data']['type']);
   }
 
   Future<dynamic> onResume(Map<String, dynamic> message) async {
@@ -79,7 +80,7 @@ class PushNotificationsProvider {
       message['data']['destination'],
       message['data']['amount'],
     );
-    _mesanjesStreamController.sink.add('ticket');
+    _mesanjesStreamController.sink.add(message['data']['type']);
   }
 
   dispose() {

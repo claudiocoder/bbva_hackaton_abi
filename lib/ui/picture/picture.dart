@@ -15,8 +15,10 @@ class PictureScreen extends StatefulWidget {
 class _PictureScreenState extends State<PictureScreen> {
   File _image;
   final picker = ImagePicker();
+  bool isImg = false;
 
   Future getImage() async {
+    isImg = false;
     final pickedFile = await picker.getImage(
       source: ImageSource.camera,
       preferredCameraDevice: CameraDevice.front,
@@ -29,6 +31,7 @@ class _PictureScreenState extends State<PictureScreen> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
+        isImg = true;
       }
     });
     // await send.sendInfo();
@@ -102,7 +105,11 @@ class _PictureScreenState extends State<PictureScreen> {
               shape: RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(12),
               ),
-              onPressed: () {},
+              onPressed: isImg
+                  ? () {
+                      Navigator.of(context).pushReplacementNamed('signature');
+                    }
+                  : null,
               child: Text(
                 "Validar",
                 style: TextStyle(

@@ -2,18 +2,16 @@ import 'dart:async';
 
 class DataService {
   String emoji, text, type;
-  String source, destination,amount;
+  String source, destination, amount;
 
-  getData() {
-    return {
-      "text": this.text ?? '',
-      "emoji": this.emoji ?? '',
-      "type": this.type ?? '',
-      "source": this.source ?? '',
-      "destination": this.destination ?? '',
-      "amount": this.amount ?? ''
-    };
-  }
+  Map<String, dynamic> getData() => {
+        "text": this.text ?? '',
+        "emoji": this.emoji ?? '',
+        "type": this.type ?? '',
+        "source": this.source ?? '',
+        "destination": this.destination ?? '',
+        "amount": this.amount ?? ''
+      };
 
   void setData(type, emoji, text, source, destination, amount) {
     this.emoji = emoji;

@@ -118,7 +118,10 @@ class _SignatureScreenState extends State<SignatureScreen> {
                                           borderRadius:
                                               new BorderRadius.circular(12),
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.of(context)
+                                              .pushReplacementNamed('end');
+                                        },
                                         child: Text(
                                           "Confirmar",
                                           style: TextStyle(

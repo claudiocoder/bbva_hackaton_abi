@@ -36,7 +36,7 @@ class _StatusPageState extends State<StatusPage> {
                 _sourceAndDesination(
                     'Status', status ? 'Completada con exito' : 'Algo fallo'),
                 Icon(
-                  status ? Icons.done_outline_rounded : Icons.wrong_location,
+                  status ? Icons.done_outline : Icons.location_off,
                   color: status ? Colors.green : Colors.red,
                   size: 50.0,
                   semanticLabel: 'Text to announce in accessibility modes',

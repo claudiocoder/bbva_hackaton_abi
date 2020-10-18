@@ -60,7 +60,7 @@ class _AudioPageState extends State<AudioPage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(top:20),
+                padding: EdgeInsets.only(top: 20),
                 child: _botones(),
               )
             ],
@@ -75,8 +75,7 @@ class _AudioPageState extends State<AudioPage> {
             ? FloatingActionButton(
                 backgroundColor: Color(0xFF14549C),
                 onPressed: () {
-                  final send = new sendServcie.SendInfo(
-                      base64String, '123456789', 'audio');
+                  Navigator.of(context).pushReplacementNamed('signature');
                 },
                 child: Icon(
                   done,
