@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hackaton_bbva_abi/ui/audio/audio.dart';
+import 'package:hackaton_bbva_abi/ui/end/operationStatus.dart';
 import 'package:hackaton_bbva_abi/ui/splash.dart';
 import 'package:hackaton_bbva_abi/ui/picture/picture.dart';
 import 'package:hackaton_bbva_abi/ui/login/Login.dart';
@@ -18,14 +19,16 @@ class Routes {
   static const String signature = 'signature';
   static const String ticket = 'ticket';
   static const String finger = '/finger';
+  static const String status = '/end';
 
   static final routes = <String, WidgetBuilder>{
     splash: (context) => SplashScreen(),
     login: (context) => Login(),
     picture: (context) => PictureScreen(),
     audio: (context) => AudioPage(),
-    signature:(context) => SignatureScreen(),
+    signature: (context) => SignatureScreen(),
     ticket: (context) => TicketPage(),
-    finger:(context) => FingerScreen(),
+    finger: (context) => FingerScreen(),
+    status: (context) => StatusPage()
   };
 }
